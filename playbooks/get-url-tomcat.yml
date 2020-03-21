@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks: 
+   - name: get tomcat url from tomcat official site
+     get_url: url=http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.51/bin/apache-tomcat-8.5.51.tar.gz dest=/tmp/ mode=0755
+
+   - name: checking downloaded remote tomcat files
+     command: "ls -rlt /tmp/"

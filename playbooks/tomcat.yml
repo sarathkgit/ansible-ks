@@ -1,0 +1,33 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+  remote_user: ansadm
+  tasks:
+   - name: create a new directory for tomcat
+     file: path=/opt/tomcat state=directory mode=0755
+
+   - name: download url from tomcat official website
+     get_url: url=http://apachemirror.wuchna.com/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz dest=/root/
+
+   - name: extract the tar file
+     unarchive: src=/root/apache-tomcat-9.0.31.tar.gz dest=/opt/ remote_src=yes
+  
+   - name: move file from /opt to /opt/tomcat
+     command: "mv /opt/apache-tomcat-9.0.31 /opt/tomcat"
+     check_mode: yes
+
+   - name: create a group fro tomcat
+     group: name=tomcat state=present
+
+   - name: create user for tomcat
+     user: name=tomcat home=/opt/tomcat shell=/sbin/nologin groups=tomcat
+
+   - name: change owner and group permissions
+     file: path=/opt/tomcat owner=tomcat group=tomcat state=directory recurse=yes
+
+   - name: shutdown the service
+     command: nohup /opt/tomcat/apache-tomcat-9.0.31/bin/shutdown.sh
+
+   - name: start the tomcat service
+     command: nohup /opt/tomcat/apache-tomcat-9.0.31/bin/startup.sh

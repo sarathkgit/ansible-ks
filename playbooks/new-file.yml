@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+   - name: creating a empty file
+     file: path=/tmp/emp-data.txt state=touch mode=0644

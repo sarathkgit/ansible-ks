@@ -1,0 +1,7 @@
+---
+- hosts: webserver
+  vars:
+   - name: Pari
+  tasks:
+   - name: Defining variable
+     debug: msg={{ name }}

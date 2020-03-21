@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo 
+  tasks:
+    - name: copying file from local to remote
+      copy: src=/tmp/script.sh dest=/tmp/

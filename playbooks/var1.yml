@@ -1,0 +1,10 @@
+---
+- hosts: webserver
+  become: yes
+  vars:
+   - name:
+       - ranjith
+       - pari
+  tasks:
+   - name: defining array of names
+     debug:  msg="{{name[1]}}"

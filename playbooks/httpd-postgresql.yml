@@ -1,0 +1,30 @@
+---
+- hosts: webserver
+  remote_user: ansadm
+  tasks:
+    - name: ensure that apache is a latest version
+      yum:
+        name: httpd
+        state: latest
+
+    - name: write the apache config file
+      template: 
+        src: /etc/ansible/srv/httpd.j2
+        dest: /etc/httpd.conf
+
+
+- hosts: appserver
+  #become: yes
+  #become_method: sudo
+  #remote_user: ec2-user
+  remote_user: ansadm
+  tasks: 
+    - name: install postgresql package
+      yum:
+        name: postgresql
+        state: latest
+
+    - name: start the service 
+      service:
+        name: postgresql
+        state: started

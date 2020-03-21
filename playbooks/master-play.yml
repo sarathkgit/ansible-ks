@@ -1,0 +1,6 @@
+---
+#- include: httpd-all.yml
+  #- include: httpd-postgresql.yml
+ 
+- import_playbook: httpd-all.yml
+- import_playbook: httpd-postgresql.yml

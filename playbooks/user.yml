@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  remote_user: ansadm
+  tasks:
+    - name: creating multiple users
+      user: name={{item}} state=present createhome=yes groups=ansadm
+      with_items:
+        - madhu
+        - sravan
+        - kiran
+        - ravi

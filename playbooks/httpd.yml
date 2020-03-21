@@ -1,0 +1,12 @@
+---
+
+- hosts: webserver
+  become: yes
+  become_method: sudo
+  remote_user: ansadm
+  tasks:
+   - name: install httpd package using yum module
+     yum: name=httpd state=installed
+
+   - name: start and enable httpd service using service module
+     service: name=httpd state=started enabled=yes
