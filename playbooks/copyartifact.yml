@@ -1,8 +1,6 @@
 ---
 - hosts: all
   become: yes
-  become_method: sudo
-  remote_user: ansadm
   tasks:
     - name: copying the artifacts to tomcat server
-      file: src=/home/jenkins/workspace/s3-deploy-tomcat/gameoflife.war dest=/usr/local/tomcat/webapps
+      copy: src=/home/jenkins/workspace/s3-deploy-tomcat/gameoflife.war dest=/usr/local/tomcat/webapps
