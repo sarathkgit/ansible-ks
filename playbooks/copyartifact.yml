@@ -1,7 +1,6 @@
 ---
 - hosts: all
   become: yes
-  become_method: sudo
   tasks:
     - name: copying the artifacts to tomcat server
       file: src=/home/jenkins/workspace/s3-deploy-tomcat/gameoflife.war dest=/usr/local/tomcat/webapps
