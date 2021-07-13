@@ -1,6 +1,6 @@
 [webserver]
 #172.31.6.77
-172.31.5.233  ansible_user=ansibleadm
+172.31.21.149  ansible_user=ansadm
 
 #[appserver]
 #172.31.86.68
